@@ -43,7 +43,7 @@ export function Calculator() {
   ];
 
   return (
-    <Card className="flex flex-col gap-7 w-89 pt-14 px-8 pb-8">
+    <Card className="flex flex-col gap-7 w-96 pt-14 px-8 pb-8">
       <CalculatorDisplay operation="1 + 1" result="2" />
       <div className="flex flex-col gap-3">
         {buttons.map((row, i) => (
@@ -60,7 +60,7 @@ export function Calculator() {
           </div>
         ))}
       </div>
-      
+
     </Card>
   );
 }

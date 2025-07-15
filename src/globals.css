@@ -17,3 +17,15 @@
 
   --font-sans: "Rubik", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(63, 58, 75);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 6px;
+}

@@ -2,14 +2,14 @@ import React from "react";
 
 interface TextProps {
   as: string;
-  variant: "default" | "muted" | "heading" | "blast";
+  variant?: "default" | "muted" | "heading" | "blast";
   className?: string;
   children: React.ReactNode;
 }
 
 export function Text({
   as = "span",
-  variant,
+  variant = "default",
   className,
   children,
   ...props
