@@ -16,14 +16,14 @@ export function CalculatorDisplay({
         variant="muted"
         className="flex items-center justify-end h-7"
       >
-        {operation}
+        {result && operation}
       </Text>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between h-9">
         <Text as="div" variant="muted">
           =
         </Text>
         <Text as="div" variant="blast">
-          {result}
+          {result || operation}
         </Text>
       </div>
     </div>
