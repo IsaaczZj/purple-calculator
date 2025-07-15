@@ -1,3 +1,9 @@
-export function App(){
-  return <h1 className="bg-purple-500">Purple Calculator</h1>
+import { Text } from "./components/Text";
+
+export function App() {
+  return (
+    <div>
+      
+    </div>
+  );
 }
