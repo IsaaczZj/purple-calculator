@@ -60,8 +60,20 @@ export function Calculator() {
     if (value === "=") {
       const operationResult = eval(`${operation.replace(/,/g, ".")}`);
       const parsedResult = operationResult.toString().replace(/\./g, ",");
-      setResult(parsedResult);
-      saveHistory(operation, parsedResult);
+      const decimalPart = String(operationResult.toString().split(".")[1]);
+      let counter = 0;
+      for (let i = 0; i < decimalPart.length; i++) {
+        counter++;
+      }
+      if (counter <= 10) {
+        setResult(parsedResult);
+        saveHistory(operation, parsedResult);
+      } else {
+        const newResult = Number(parsedResult.replace(/,/g, ".")).toFixed(10)
+        setResult(`${newResult.toString()}...`);
+        saveHistory(operation, newResult.toString());
+      }
+
       return;
     }
     if (result) {

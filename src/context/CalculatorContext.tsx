@@ -11,10 +11,13 @@ export function CalculatorProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [history, setHistory] = useState<string[] | []>([]);
+  const [history, setHistory] = useState<string[]>([]);
 
-  function saveHistory(operarion: string, parsedResult: string) {
-    setHistory((prev) => [...prev, `${operarion}=${parsedResult}`]);
+  function saveHistory(operation: string, parsedResult: string) {
+    if (!history.includes(`${operation}=${parsedResult}`)) {
+      setHistory((prev) => [...prev, `${operation}=${parsedResult}`]);
+      return;
+    }
   }
 
   return (
