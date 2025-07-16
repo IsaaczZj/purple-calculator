@@ -1,9 +1,9 @@
-import { useCalculator } from "../hooks/useCalculator";
+import { useSaveData } from "../hooks/useSaveData";
 import { Card } from "./card";
 import { Text } from "./text";
 
 export function OperatorHistory() {
-  const { history } = useCalculator();
+  const { history } = useSaveData();
   return (
     <Card className="py-10 px-8 w-full">
       <Text as="h1" variant="heading" className="mb-4">

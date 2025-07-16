@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "./button";
 import { CalculatorDisplay } from "./calculator-display";
 import { Card } from "./card";
+import { useSaveData } from "../hooks/useSaveData";
 import { useCalculator } from "../hooks/useCalculator";
 type ButtonPropsArr = {
   value: string;
@@ -10,9 +11,8 @@ type ButtonPropsArr = {
 };
 
 export function Calculator() {
-  const [operation, setOperation] = useState("");
-  const [result, setResult] = useState("");
-  const { saveHistory } = useCalculator();
+  const { operation, result, doOperation } = useCalculator();
+
   const buttons: ButtonPropsArr[][] = [
     [
       { value: "CE" },
@@ -47,48 +47,7 @@ export function Calculator() {
     ],
   ];
   function handleClick(value: string) {
-    if (value === "C") {
-      setOperation("");
-      setResult("");
-      return;
-    }
-    if (value === "CE") {
-      setResult("");
-      setOperation(operation.slice(0, -1));
-      return;
-    }
-    if (value === "=") {
-      const operationResult = eval(`${operation.replace(/,/g, ".")}`);
-      const parsedResult = operationResult.toString().replace(/\./g, ",");
-      const decimalPart = String(operationResult.toString().split(".")[1]);
-      let counter = 0;
-      for (let i = 0; i < decimalPart.length; i++) {
-        counter++;
-      }
-      if (counter <= 10) {
-        setResult(parsedResult);
-        saveHistory(operation, parsedResult);
-      } else {
-        const newResult = Number(parsedResult.replace(/,/g, ".")).toFixed(10)
-        setResult(`${newResult.toString()}...`);
-        saveHistory(operation, newResult.toString());
-      }
-
-      return;
-    }
-    if (result) {
-      const valueNumber = Number(value);
-      setOperation(isNaN(valueNumber) ? `${result}${value}` : `${value}`);
-      setResult("");
-      return;
-    }
-
-    if (value === "," && !operation.endsWith(",")) {
-      setOperation(`${operation},`);
-      return;
-    }
-
-    setOperation(`${operation}${value}`);
+    doOperation(value);
   }
   return (
     <Card className="flex flex-col gap-7 w-96 pt-14 px-8 pb-8">

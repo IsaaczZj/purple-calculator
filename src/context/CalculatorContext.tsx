@@ -25,6 +25,7 @@ export function CalculatorProvider({
       });
     }
   }
+  
   function loadHistory() {
     const storageHistory = localStorage.getItem(HISTORY_STORAGE_KEY);
     if (storageHistory) {
