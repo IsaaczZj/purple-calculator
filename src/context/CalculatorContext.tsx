@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 type CalculatorContextType = {
   history: string[];
@@ -12,13 +12,30 @@ export function CalculatorProvider({
   children: React.ReactNode;
 }) {
   const [history, setHistory] = useState<string[]>([]);
-
+  const HISTORY_STORAGE_KEY = "@history";
   function saveHistory(operation: string, parsedResult: string) {
     if (!history.includes(`${operation}=${parsedResult}`)) {
-      setHistory((prev) => [...prev, `${operation}=${parsedResult}`]);
-      return;
+      setHistory((prevHistory) => {
+        const updatedHistory = [...prevHistory, `${operation}=${parsedResult}`];
+        localStorage.setItem(
+          HISTORY_STORAGE_KEY,
+          JSON.stringify(updatedHistory)
+        );
+        return updatedHistory;
+      });
     }
   }
+  function loadHistory() {
+    const storageHistory = localStorage.getItem(HISTORY_STORAGE_KEY);
+    if (storageHistory) {
+      const parsedhistory = JSON.parse(storageHistory);
+      setHistory(parsedhistory);
+      return
+    }
+  }
+  useEffect(() => {
+    loadHistory();
+  }, []);
 
   return (
     <CalculatorContext.Provider value={{ history, saveHistory }}>
