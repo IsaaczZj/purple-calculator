@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { Button } from "./button";
 import { CalculatorDisplay } from "./calculator-display";
 import { Card } from "./card";
-import { useSaveData } from "../hooks/useSaveData";
 import { useCalculator } from "../hooks/useCalculator";
 type ButtonPropsArr = {
   value: string;
