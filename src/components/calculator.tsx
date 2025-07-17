@@ -48,11 +48,11 @@ export function Calculator() {
     doOperation(value);
   }
   return (
-    <Card className="flex flex-col gap-7 w-96 pt-14 px-8 pb-8">
+    <Card className="flex flex-col gap-7 w-96 pt-14 px-12 pb-8">
       <CalculatorDisplay operation={operation} result={result} />
       <div className="flex flex-col gap-3">
         {buttons.map((row, i) => (
-          <div key={i} className="flex gap-3">
+          <div key={i} className="flex gap-3 ">
             {row.map((button) => (
               <Button
                 key={button.value}
