@@ -1,3 +1,6 @@
+<img width="530" height="356" alt="image" src="https://github.com/user-attachments/assets/09b6f087-c4d2-4634-9392-61341b98642f" />
+
+
 # Purple Calculator
 
 Este é um projeto de uma calculadora simples - ou nem tanto - e moderna com tema roxo.
